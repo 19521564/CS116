@@ -4,7 +4,7 @@
 Client::Client() {
 }
 
-Client::Client(string detiAdress)
+Client::Client(string sDetiAdress)
 {
 	//WSAStartup Fun
 
@@ -28,7 +28,7 @@ Client::Client(string detiAdress)
 	// Fill the structure
 
 	TCPServerAdd.sin_family = AF_INET;
-	TCPServerAdd.sin_addr.s_addr = inet_addr(detiAdress.c_str());
+	TCPServerAdd.sin_addr.s_addr = inet_addr(sDetiAdress.c_str());
 	TCPServerAdd.sin_port = htons(PORT);
 }
 
@@ -59,11 +59,11 @@ char* Client::receiveData()
 	return RecvBuffer;
 }
 
-void Client::sendData(char* data)
+void Client::sendData(char* cData)
 {
 	// Send Data to the server
 
-	int iSend = send(TCPClientSocket, data, iBufferSize, 0);
+	int iSend = send(TCPClientSocket, cData, iBufferSize, 0);
 	if (iSend == SOCKET_ERROR)
 	{
 		cout << "Sending Failed & Error No->" << WSAGetLastError() << endl;
@@ -84,10 +84,7 @@ Client::~Client()
 	system("PAUSE");
 }
 
-void Client::setBufferSize(int newBufferSize) {
-	iBufferSize = newBufferSize;
+void Client::setBufferSize(int iNewBufferSize) {
+	iBufferSize = iNewBufferSize;
 }
 
-int Client::getBufferSize() {
-	return iBufferSize;
-}

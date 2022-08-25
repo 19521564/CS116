@@ -18,11 +18,10 @@ private:
 
 public:
 	Client();
-	Client(string destiAdress);
+	Client(string sDestiAdress);
 	void isConnect();
 	char* receiveData();
-	void sendData(char* data);
-	int getBufferSize();
-	void setBufferSize(int newBufferSize);
+	void sendData(char* cData);
+	void setBufferSize(int iNewBufferSize);
 	~Client();
 };

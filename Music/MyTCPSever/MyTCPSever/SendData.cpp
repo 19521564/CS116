@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
 
 	//send loai du lieu:
 	sDataType = vCmdSplit[0];
-	char* cDataType = new char[(sDataType.size())];
+	char* cDataType = new char[(sDataType.length())];
 	strcpy(cDataType, sDataType.c_str());
 	server.sendData(cDataType);
 	delete[] cDataType;
@@ -83,10 +83,11 @@ int main(int argc, char* argv[])
 			return 0;
 		}
 
-		char cText[256];
+		char *cText = new char[sText.length()];
 		strcpy(cText, sText.c_str());
 		server.sendData(cText);
 		cout << "Send text success!"<<endl;
+		delete[] cText;
 	}
 	else if (sDataType.compare("SendFile") == 0)
 	{
@@ -96,40 +97,45 @@ int main(int argc, char* argv[])
 		//cout << bufferSize << endl;
 
 		//send name:
-		char cFileName[512];
+		char *cFileName = new char [sFileName.length()];
 		strcpy(cFileName, sFileName.c_str());
 		server.sendData(cFileName);
+		delete[] cFileName;
 
 		//send buffersize:
-		char cBufferSize[512];
+		char *cBufferSize = new char[sBufferSize.length()];
 		strcpy(cBufferSize, sBufferSize.c_str());
 		server.sendData(cBufferSize);
+		delete[] cBufferSize;
 
 		//send size:
 		__int64 iFileSize = getFileSize(sPath.c_str());
 		string sFileSize = to_string(iFileSize);
-		char cFileSize[512];
+		char *cFileSize = new char[sFileSize.length()];
 		strcpy(cFileSize, sFileSize.c_str());
 		server.sendData(cFileSize);
+		//cout << cFileSize << endl;
+		delete[] cFileSize;
 
-		cout << cFileSize << endl;
+
 		//read file:
 		int iBufferSize = stoi(sBufferSize);
 		server.setBufferSize(iBufferSize);
 		__int64 iRemain = iFileSize;
-		ifstream MyReadFile(sPath.c_str());
+		ifstream MyReadFile(sPath.c_str(), std::ifstream::binary);
 
 		while (true)
 		{
-			streamsize size = (streamsize)min(iRemain, 1ll * iBufferSize);
+			streamsize size = (streamsize)min(iRemain, iBufferSize);
 			//cout << size << endl;
 			char* cBuffer = new char[size];
 			MyReadFile.read(cBuffer, size);
-			//cout << iRemain << " " << 1ll * iBufferSize << endl;
+			/*cout << size << endl;
+			cout << cBuffer << endl;*/
 			server.sendData(cBuffer);
 			delete[] cBuffer;
 
-			iRemain -= (1ll * iBufferSize);
+			iRemain -= (iBufferSize);
 			if (iRemain <= 0)
 				break;
 		}

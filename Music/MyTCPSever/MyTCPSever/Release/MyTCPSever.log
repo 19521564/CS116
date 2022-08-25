@@ -1,8 +1,8 @@
 ﻿  SendData.cpp
-C:\Users\DELL\Music\MyTCPSever\MyTCPSever\SendData.cpp(126,29): warning C4244: 'initializing': conversion from 'std::streamsize' to 'unsigned int', possible loss of data
+C:\Users\DELL\Music\MyTCPSever\MyTCPSever\SendData.cpp(131,29): warning C4244: 'initializing': conversion from 'std::streamsize' to 'unsigned int', possible loss of data
   Server.cpp
   Generating code
   Previous IPDB not found, fall back to full compilation.
-  All 315 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 316 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   MyTCPSever.vcxproj -> C:\Users\DELL\Music\MyTCPSever\Release\SendData.exe

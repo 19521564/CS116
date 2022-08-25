@@ -1,0 +1,5 @@
+﻿  SendData.cpp
+C:\Users\DELL\Music\MyTCPSever\MyTCPSever\SendData.cpp(79,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Server.cpp
+  Generating Code...
+  MyTCPSever.vcxproj -> C:\Users\DELL\Music\MyTCPSever\x64\Debug\SendData.exe

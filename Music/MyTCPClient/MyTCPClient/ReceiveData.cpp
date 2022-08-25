@@ -57,28 +57,33 @@ int main(int argc, char* argv[])
 		//recevie file size:
 		__int64 iFileSize = stoll(client.receiveData());
 		__int64 iRemain = iFileSize;
-		cout << iRemain << endl;
+		//cout << iRemain << endl;
 		//cout << bufferSize << endl;
 		client.setBufferSize(iBufferSize);
-		ofstream MyRecvFile((sPathStore + sFileName).c_str());
+		ofstream MyRecvFile((sPathStore + sFileName).c_str(), std::ofstream::binary);
 		string sBuffer;
 		__int64 iCurrentSize;
 		while (true)
 		{
-			streamsize size = (streamsize)min(iRemain, 1ll * iBufferSize);
+			streamsize size = (streamsize)min(iRemain, iBufferSize);
+
 			//cout << size << endl;
-			char* cBuffer = new char[size];
+			sBuffer = (string)client.receiveData();
+			//cout << sBuffer << endl;
+			MyRecvFile << sBuffer;
+			/*char* cBuffer = new char[size];
 			if (iRemain < iBufferSize)
 			{
 				client.setBufferSize(size);
 			}
 			strcpy(cBuffer, client.receiveData());
-			MyRecvFile.write(cBuffer, size);
-			delete[] cBuffer;
-			//sBuffer = (string)client.receiveData();
-			//
-			////cout << sBuffer << endl;
-			//MyRecvFile << sBuffer;
+			cout << cBuffer << endl;
+			if (!MyRecvFile.write(cBuffer, size))
+			{
+				cout << "error" << endl;
+				break;
+			}
+			delete[] cBuffer;*/
 
 			iRemain -= iBufferSize;
 			iCurrentSize = getFileSize((sPathStore + sFileName).c_str());

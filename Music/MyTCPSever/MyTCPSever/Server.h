@@ -24,11 +24,10 @@ private:
 
 public:
 	Server();
-	Server(string target);
+	Server(string sDestiAdress);
 	void isConnect();
-	void sendData(char* data);
+	void sendData(char* cData);
 	char* receiveData();
-	int getBufferSize();
 	void setBufferSize(int newBufferSize);
 	~Server();
 

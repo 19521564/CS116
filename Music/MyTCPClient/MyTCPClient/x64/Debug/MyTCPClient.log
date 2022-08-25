@@ -1,0 +1,7 @@
+﻿  Client.cpp
+  ReceiveData.cpp
+C:\Users\DELL\Music\MyTCPClient\MyTCPClient\ReceiveData.cpp(73,26): warning C4244: 'argument': conversion from 'std::streamsize' to 'int', possible loss of data
+C:\Users\DELL\Music\MyTCPClient\MyTCPClient\ReceiveData.cpp(86,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\DELL\Music\MyTCPClient\MyTCPClient\ReceiveData.cpp(94,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  MyTCPClient.vcxproj -> C:\Users\DELL\Music\MyTCPClient\x64\Debug\ReceiveData.exe
